@@ -50,12 +50,20 @@ android {
 
 dependencies {
 
+    implementation project(path: ':ui-fqa')
+    implementation project(path: ':ui-square')
+    implementation project(path: ':ui-system')
+    implementation project(path: ':ui-project')
+    implementation project(path: ':ui-profile')
+    implementation project(path: ':ui-home')
+
     implementation Libs.AndroidX.Activity.compose
     implementation Libs.AndroidX.Core.ktx
     implementation Libs.AndroidX.Compose.ui
     implementation Libs.AndroidX.Compose.material
     implementation Libs.AndroidX.Compose.uiPreview
     implementation Libs.AndroidX.Lifecycle.runtimeKtx
+
 
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit

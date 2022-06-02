@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
@@ -7,19 +7,15 @@ import com.rock.buildsrc.ProjectConfig
 import com.rock.buildsrc.Libs
 
 android {
+
     compileSdk ProjectConfig.compileSdkVersion
 
     defaultConfig {
-        applicationId ProjectConfig.applicationId
         minSdk ProjectConfig.minSdkVersion
         targetSdk ProjectConfig.targetSdkVersion
-        versionCode ProjectConfig.versionCode
-        versionName ProjectConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -41,35 +37,16 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion ProjectConfig.kotlinCompilerExtensionVersion
     }
-    packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-    }
 }
 
 dependencies {
 
-    implementation project(path: ':ui-fqa')
-    implementation project(path: ':ui-square')
-    implementation project(path: ':ui-system')
-    implementation project(path: ':ui-project')
-    implementation project(path: ':ui-profile')
-    implementation project(path: ':ui-home')
-    implementation project(path: ':lib_compose')
-
-    implementation Libs.AndroidX.Activity.compose
     implementation Libs.AndroidX.Core.ktx
     implementation Libs.AndroidX.Compose.ui
     implementation Libs.AndroidX.Compose.material
-    implementation Libs.AndroidX.Compose.uiPreview
-    implementation Libs.AndroidX.Lifecycle.runtimeKtx
     implementation Libs.AndroidX.Navigation.navigationCompose
-
 
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit
     androidTestImplementation Libs.AndroidX.Test.espresso
-    androidTestImplementation Libs.AndroidX.Compose.uiTestJunit4
-    debugImplementation Libs.AndroidX.Compose.uiTooling
 }

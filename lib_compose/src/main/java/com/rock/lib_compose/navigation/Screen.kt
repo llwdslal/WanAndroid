@@ -7,7 +7,7 @@ import java.lang.StringBuilder
 
 abstract class Screen(private val path:String){
     //根路由，相当于分组标签
-    abstract val rootRoute:String
+    abstract val root:String
 
     open val arguments:List<NamedNavArgument> = emptyList()
     open val deepLinks:List<NavDeepLink> = emptyList()
@@ -17,7 +17,7 @@ abstract class Screen(private val path:String){
     private val optionalArgs:MutableMap<String,Any?> = mutableMapOf()
 
     private val routePath by lazy {
-        if (rootRoute.isEmpty()) path else "${rootRoute}/${path}"
+        if (root.isEmpty()) path else "$root/${path}"
     }
 
     /**
@@ -26,6 +26,7 @@ abstract class Screen(private val path:String){
      */
     val route:String by lazy {
         val sb = StringBuilder(routePath)
+        //解析参数时将 必选/可选参数 分别保存起来
         for (arg in arguments){
             if (arg.argument.isNullable || arg.argument.isDefaultValuePresent){
                 //可选参数

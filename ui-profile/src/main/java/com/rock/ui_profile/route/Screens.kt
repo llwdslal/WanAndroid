@@ -1,24 +1,23 @@
-package com.rock.ui_home.route
+package com.rock.ui_profile.route
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import com.rock.lib_compose.navigation.Screen
 import com.rock.lib_compose.navigation.ScreenNavGraph
 import com.rock.lib_compose.navigation.composableScreen
-import com.rock.ui_home.UiHome
+import com.rock.ui_profile.UiProfile
 
-sealed class HomeScreens(path:String):Screen(path) {
+sealed class ProfileScreens(path:String):Screen(path) {
     override val root: String
-        get() = "home"
+        get() = "profile"
 
-    object Index:HomeScreens("index")
+    object Index: ProfileScreens("index")
 
-    //abstract 是为涉及跨模块路由时定义抽象方法或属性
     abstract class NavGraph(navController: NavController):ScreenNavGraph(navController,Index){
 
          override val composeScreens: NavGraphBuilder.() -> Unit = {
             composableScreen(Index){
-                UiHome()
+                UiProfile()
             }
          }
      }

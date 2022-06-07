@@ -34,6 +34,10 @@ object Libs {
             const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
         }
 
+        object Navigation{
+            const val navigationCompose = "androidx.navigation:navigation-compose:2.4.2"
+        }
+
         object Test {
             const val extJunit = "androidx.test.ext:junit:1.1.3"
             const val espresso = "androidx.test.espresso:espresso-core:3.4.0"

@@ -16,20 +16,13 @@ import com.rock.ui_system.route.SystemScreens
 @Composable
 fun WanNavHost(modifier: Modifier = Modifier,navController: NavHostController){
 
-    val homeGraph = remember { HomeGraph(navController) }
-    val profileGraph = remember { ProfileGraph(navController) }
-    val faqGraph = remember { FaqGraph(navController) }
-    val projectGraph = remember { ProjectGraph(navController) }
-    val squareGraph = remember { SquareGraph(navController) }
-    val systemGraph = remember { SystemGraph(navController) }
-
     NavHost(modifier= modifier,navController = navController, startDestination = HomeScreens.Index.root){
-        homeGraph.create(this)
-        faqGraph.create(this)
-        projectGraph.create(this)
-        squareGraph.create(this)
-        systemGraph.create(this)
-        profileGraph.create(this)
+        HomeGraph(navController).create(this)
+        FaqGraph(navController).create(this)
+        ProjectGraph(navController).create(this)
+        SquareGraph(navController).create(this)
+        SystemGraph(navController).create(this)
+        ProfileGraph(navController).create(this)
     }
 }
 

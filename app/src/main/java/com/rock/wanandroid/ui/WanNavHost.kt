@@ -5,6 +5,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.rock.lib_compose.navigation.PageNotFoundScreen
+import com.rock.lib_compose.navigation.composableScreen
 import com.rock.ui_fqa.route.FqaScreens
 import com.rock.ui_home.route.HomeScreens
 import com.rock.ui_profile.route.ProfileScreens
@@ -23,6 +25,11 @@ fun WanNavHost(modifier: Modifier = Modifier,navController: NavHostController){
         SquareGraph(navController).create(this)
         SystemGraph(navController).create(this)
         ProfileGraph(navController).create(this)
+
+        // 404 页面
+        composableScreen(PageNotFoundScreen){
+            PageNotFound(navController = navController)
+        }
     }
 }
 

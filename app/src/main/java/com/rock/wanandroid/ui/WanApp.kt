@@ -21,37 +21,26 @@ import com.rock.wanandroid.ui.theme.WanAndroidTheme
 @Composable
 fun WanApp(){
 
-    val navController = rememberNavController()
-    var selectedItemIndex by remember { mutableStateOf(0) }
-    val bottomBarItems = remember { BottomBarItem.values() }
+    val wanAppState = rememberWanAppState()
 
     WanAndroidTheme {
         // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
+        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+
             Scaffold(
                 topBar = {
-                    TopBar(title = bottomBarItems[selectedItemIndex].label) {}
+                    if (wanAppState.shouldShowNavBar) {
+                        TopBar(title = wanAppState.title, wanAppState::navigateToProfile)
+                    }
                 },
                 bottomBar = {
-                    BottomBar(bottomBarItems, selectedItemIndex) {
-                        if (it != selectedItemIndex) {
-                            selectedItemIndex = it
-                            navController.navigate(bottomBarItems[selectedItemIndex].route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        }
+                    if (wanAppState.shouldShowNavBar) {
+                        BottomBar(wanAppState.bottomBarItems, wanAppState.selectedBottomItemIndex,wanAppState::navigateToBottomItem)
                     }
                 },
                 containerColor = Color.LightGray
             ) {
-                WanNavHost(modifier = Modifier.padding(it),navController = navController)
+                WanNavHost(modifier = Modifier.padding(it),navController = wanAppState.navController)
             }
         }
     }
@@ -83,36 +72,5 @@ internal fun BottomBar(items:Array<BottomBarItem>,selectedIndex:Int = 0, onBotto
     }
 }
 
-enum class BottomBarItem(
-    val label: String,
-    val icon: @Composable () -> Unit,
-    val route: String
-) {
-    Home(
-        "首页",
-        { Icon(imageVector = Icons.Filled.Home, contentDescription = "") },
-        HomeScreens.Index.root
-    ),
-    Fqa(
-        "问答",
-        { Icon(imageVector = Icons.Filled.Info, contentDescription = "") },
-        FqaScreens.Index.root
-    ),
-    Project(
-        "项目",
-        { Icon(imageVector = Icons.Filled.Search, contentDescription = "") },
-        ProjectScreens.Index.root
-    ),
-    Square(
-        "广场",
-        { Icon(imageVector = Icons.Filled.Build, contentDescription = "") },
-        SquareScreens.Index.root
-    ),
-    System(
-        "体系",
-        { Icon(imageVector = Icons.Filled.Menu, contentDescription = "") },
-        SystemScreens.Index.root
-    ),
-}
 
 

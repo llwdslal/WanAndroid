@@ -3,7 +3,6 @@ package com.rock.lib_compose.navigation
 import androidx.core.net.toUri
 import androidx.navigation.*
 
-
 interface NavInterceptor{
     /**
      * 是否需要拦截

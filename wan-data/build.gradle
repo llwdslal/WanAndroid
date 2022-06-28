@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+import com.rock.buildsrc.ProjectConfig
+import com.rock.buildsrc.Libs
+
+android {
+
+    compileSdk ProjectConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdkVersion
+        targetSdk ProjectConfig.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled ProjectConfig.minifyEnabled
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = ProjectConfig.jvmTarget
+    }
+}
+dependencies {
+
+    implementation Libs.AndroidX.Core.ktx
+    implementation Libs.Kotlin.Coroutine.Core
+
+
+    //okhttp
+    implementation Libs.Okhttp.okhttp
+    //retrofit
+    implementation Libs.Retrofit.retrofit
+    implementation Libs.Retrofit.converterGson
+    implementation Libs.Retrofit.coroutinesAdapter
+
+    //room
+    implementation Libs.AndroidX.Room.runtime
+    implementation Libs.AndroidX.Room.ktx
+    annotationProcessor Libs.AndroidX.Room.compiler
+    kapt Libs.AndroidX.Room.compiler
+
+    //hilt
+    implementation Libs.Hilt.hiltAndroid
+    kapt Libs.Hilt.hiltAndroidCompiler
+
+    testImplementation Libs.Junit.junit
+    androidTestImplementation Libs.AndroidX.Test.extJunit
+    androidTestImplementation Libs.AndroidX.Test.espresso
+}

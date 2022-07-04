@@ -39,5 +39,4 @@ abstract class WanAndroidDB : RoomDatabase(){
             return builder.build()
         }
     }
-
 }

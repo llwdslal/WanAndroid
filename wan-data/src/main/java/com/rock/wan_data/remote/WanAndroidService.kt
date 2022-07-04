@@ -1,7 +1,6 @@
 package com.rock.wan_data.remote
 
 
-import com.rock.wan_data.base.NetResponse
 import com.rock.wan_data.entity.Article
 import com.rock.wan_data.entity.Banner
 import retrofit2.http.*

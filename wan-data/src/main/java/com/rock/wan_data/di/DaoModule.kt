@@ -18,5 +18,4 @@ object DaoModule {
     @Provides
     @Singleton
     fun articleDao(db:WanAndroidDB) = db.articleDao()
-
 }

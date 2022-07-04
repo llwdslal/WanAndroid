@@ -1,10 +1,11 @@
 package com.rock.wan_repositroy
 
 
-import com.rock.wan_data.base.handleResponse
+import com.rock.wan_data.remote.handleResponse
 import com.rock.wan_data.entity.Banner
 import com.rock.wan_repositroy.datasource.BannerDataSource
 import com.rock.wan_repositroy.datastore.BannerDataStore
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

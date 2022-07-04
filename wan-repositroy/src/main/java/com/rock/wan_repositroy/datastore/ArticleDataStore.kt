@@ -3,6 +3,7 @@ package com.rock.wan_repositroy.datastore
 import com.rock.wan_data.entity.Article
 import com.rock.wan_data.local.dao.ArticleDao
 import com.rock.wan_data.local.datastore.TopicPDS
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

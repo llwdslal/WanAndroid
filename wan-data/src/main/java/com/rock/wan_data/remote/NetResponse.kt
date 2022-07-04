@@ -1,4 +1,4 @@
-package com.rock.wan_data.base
+package com.rock.wan_data.remote
 
 data class ResponseException(val code:Int,val msg:String):Exception()
 

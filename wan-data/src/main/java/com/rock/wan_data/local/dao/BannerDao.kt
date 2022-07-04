@@ -1,7 +1,6 @@
 package com.rock.wan_data.local.dao
 
 import androidx.room.*
-import com.rock.wan_data.base.BaseDao
 import com.rock.wan_data.entity.Banner
 
 import kotlinx.coroutines.flow.Flow

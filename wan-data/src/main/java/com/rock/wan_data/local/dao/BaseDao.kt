@@ -1,4 +1,4 @@
-package com.rock.wan_data.base
+package com.rock.wan_data.local.dao
 
 import androidx.room.*
 

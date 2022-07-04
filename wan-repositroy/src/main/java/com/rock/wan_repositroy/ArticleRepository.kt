@@ -1,9 +1,10 @@
 package com.rock.wan_repositroy
 
-import com.rock.wan_data.base.handleResponse
+import com.rock.wan_data.remote.handleResponse
 import com.rock.wan_data.entity.Article
 import com.rock.wan_repositroy.datasource.ArticleDataSource
 import com.rock.wan_repositroy.datastore.ArticleDataStore
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn

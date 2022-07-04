@@ -19,6 +19,5 @@ class BannerRepository @Inject constructor(
             bannerDataStore.saveBanner(it)
         }
     }
-
     fun observeBanner(): Flow<List<Banner>> = bannerDataStore.getBanner()
 }

@@ -49,6 +49,11 @@ object Libs {
             const val navigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
         }
 
+        object Datastore{
+            private const val version = "1.0.0"
+            const val dataStoreP = "androidx.datastore:datastore-preferences:$version"
+        }
+
         object Test {
             const val extJunit = "androidx.test.ext:junit:1.1.3"
             const val espresso = "androidx.test.espresso:espresso-core:3.4.0"

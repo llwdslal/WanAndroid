@@ -1,8 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 import com.rock.buildsrc.ProjectConfig
@@ -33,32 +31,15 @@ android {
     kotlinOptions {
         jvmTarget = ProjectConfig.jvmTarget
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion ProjectConfig.kotlinCompilerExtensionVersion
+    }
 }
+
 dependencies {
 
     implementation Libs.AndroidX.Core.ktx
-    implementation Libs.Kotlin.Coroutine.Core
-
-
-    //okhttp
-    implementation Libs.Okhttp.okhttp
-    //retrofit
-    implementation Libs.Retrofit.retrofit
-    implementation Libs.Retrofit.converterGson
-    implementation Libs.Retrofit.coroutinesAdapter
-
-    //room
-    implementation Libs.AndroidX.Room.runtime
-    implementation Libs.AndroidX.Room.ktx
-    annotationProcessor Libs.AndroidX.Room.compiler
-    kapt Libs.AndroidX.Room.compiler
-
-    //hilt
-    implementation Libs.Hilt.hiltAndroid
-    kapt Libs.Hilt.hiltAndroidCompiler
-
-    //DataStore
-    implementation Libs.AndroidX.Datastore.dataStoreP
 
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit

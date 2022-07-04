@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 abstract class ArticleDao : BaseDao<Article>() {
     //置顶文章 type = 1
     @Query("SELECT * FROM Article WHERE type = 1 AND id in(:ids)")
-    protected abstract fun getTopics(ids: List<Int>): Flow<List<Article>>
+    abstract fun getTopics(ids: List<Int>): List<Article>
 
-    fun getDistinctTopics(ids: List<Int>): Flow<List<Article>> = getTopics(ids)
+
 }

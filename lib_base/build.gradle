@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+import com.rock.buildsrc.ProjectConfig
+import com.rock.buildsrc.Libs
+
+android {
+
+    compileSdk ProjectConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdkVersion
+        targetSdk ProjectConfig.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled ProjectConfig.minifyEnabled
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = ProjectConfig.jvmTarget
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion ProjectConfig.kotlinCompilerExtensionVersion
+    }
+}
+
+dependencies {
+
+    implementation Libs.AndroidX.Core.ktx
+
+    testImplementation Libs.Junit.junit
+    androidTestImplementation Libs.AndroidX.Test.extJunit
+    androidTestImplementation Libs.AndroidX.Test.espresso
+}

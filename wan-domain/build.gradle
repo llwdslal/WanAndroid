@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 import com.rock.buildsrc.ProjectConfig
@@ -31,21 +33,19 @@ android {
     kotlinOptions {
         jvmTarget = ProjectConfig.jvmTarget
     }
-    buildFeatures {
-        compose ProjectConfig.compose
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion ProjectConfig.kotlinCompilerExtensionVersion
-    }
 }
-
 dependencies {
 
+    api project(path: ':lib_base')
+    api project(path: ':wan-data')
+    implementation project(path: ':wan-repositroy')
+
     implementation Libs.AndroidX.Core.ktx
-    implementation Libs.AndroidX.Compose.ui
-    implementation Libs.AndroidX.Compose.material
-    implementation Libs.AndroidX.Navigation.navigationCompose
-    implementation project(path: ':lib_base')
+    implementation Libs.Kotlin.Coroutine.Core
+
+    //hilt
+    implementation Libs.Hilt.hiltAndroid
+    kapt Libs.Hilt.hiltAndroidCompiler
 
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit

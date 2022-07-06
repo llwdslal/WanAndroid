@@ -40,6 +40,8 @@ android {
 dependencies {
 
     implementation Libs.AndroidX.Core.ktx
+    implementation Libs.AndroidX.Lifecycle.viewModel
+    implementation Libs.Kotlin.Coroutine.Core
 
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit

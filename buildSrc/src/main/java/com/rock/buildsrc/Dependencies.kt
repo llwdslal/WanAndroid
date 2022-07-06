@@ -1,7 +1,7 @@
 package com.rock.buildsrc
 
 object Version {
-    const val compose = "1.2.0-beta02"
+    const val compose = "1.2.0-alpha08"
 }
 
 object Libs {
@@ -32,6 +32,8 @@ object Libs {
         object Lifecycle {
             private const val version = "2.4.1"
             const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
+            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+            const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
         }
 
         object Navigation{

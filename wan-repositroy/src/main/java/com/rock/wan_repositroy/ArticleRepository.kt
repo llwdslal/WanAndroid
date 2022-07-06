@@ -7,6 +7,7 @@ import com.rock.wan_repositroy.datastore.ArticleDataStore
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
@@ -18,12 +19,14 @@ class ArticleRepository @Inject constructor(
     private val articleDataStore: ArticleDataStore,
     private val articleDataSource: ArticleDataSource
 ) {
-    fun observeTopic(): Flow<List<Article>> = articleDataStore.getTopicIds().map {
-        articleDataStore.getTopicByIds(it)
-    }.flowOn(Dispatchers.IO)
+    fun observeTopic(): Flow<List<Article>> = articleDataStore.getTopicIds()
+        .distinctUntilChanged()
+        .map {
+            articleDataStore.getTopicByIds(it)
+        }.flowOn(Dispatchers.IO)
 
     suspend fun updateTopic() {
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             articleDataSource.topicArticles().handleResponse {
                 articleDataStore.saveTopics(it)
                 articleDataStore.saveTopicIds(it.map { article -> article.id })

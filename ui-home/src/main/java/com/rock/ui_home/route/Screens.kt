@@ -11,14 +11,14 @@ sealed class HomeScreens(path:String):Screen(path) {
     override val root: String
         get() = "home"
 
-    object Index:HomeScreens("index")
+    object Index : HomeScreens("index")
 
     //abstract 是为涉及跨模块路由时定义抽象方法或属性
     abstract class NavGraph(navController: NavController):ScreenNavGraph(navController,Index){
 
          override val composeScreens: NavGraphBuilder.() -> Unit = {
             composableScreen(Index){
-                UiHome()
+                UiHome(navController = this@NavGraph.navController)
             }
          }
      }

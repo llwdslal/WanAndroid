@@ -24,11 +24,11 @@ class InvokeCounter {
     val flow: Flow<Boolean>
         get() = loadingState.map { it > 0 }.distinctUntilChanged()
 
-    fun addLoader() {
+    fun addCounter() {
         loadingState.value = count.incrementAndGet()
     }
 
-    fun removeLoader() {
+    fun removeCounter() {
         loadingState.value = count.decrementAndGet()
     }
 }
@@ -41,13 +41,13 @@ suspend fun <T> Flow<InvokeStatus<T>>.collectStatus(
 ) {
     this.collect { status ->
         when(status){
-            is InvokeStatus.Start -> invokeCounter.addLoader()
+            is InvokeStatus.Start -> invokeCounter.addCounter()
             is InvokeStatus.Success -> {
-                invokeCounter.removeLoader()
+                invokeCounter.removeCounter()
                 successHandler?.invoke(status.result)
             }
             is InvokeStatus.Error ->{
-                invokeCounter.removeLoader()
+                invokeCounter.removeCounter()
                 errorHandler?.invoke(status)
             }
         }

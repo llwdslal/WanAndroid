@@ -90,6 +90,16 @@ object Libs {
             "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
     }
 
+    object Accompanist {
+        private const val version = "0.24.13-rc"
+        const val pager = "com.google.accompanist:accompanist-pager:$version"
+        const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:$version"
+        const val placeholder = "com.google.accompanist:accompanist-placeholder-material:$version"
+    }
+    object Coil {
+        const val coilCompose = "io.coil-kt:coil-compose:2.1.0"
+    }
+
     object Junit {
         const val junit = "junit:junit:4.13.2"
     }

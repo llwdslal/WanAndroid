@@ -41,11 +41,17 @@ android {
 
 dependencies {
 
+    implementation project(path: ':lib_base')
+
     implementation Libs.AndroidX.Core.ktx
     implementation Libs.AndroidX.Compose.ui
     implementation Libs.AndroidX.Compose.material
     implementation Libs.AndroidX.Navigation.navigationCompose
-    implementation project(path: ':lib_base')
+    implementation Libs.Accompanist.pager
+    implementation Libs.Accompanist.pagerIndicators
+    implementation Libs.Accompanist.placeholder
+    implementation Libs.Coil.coilCompose
+
 
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit

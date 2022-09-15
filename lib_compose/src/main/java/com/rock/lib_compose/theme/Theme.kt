@@ -1,6 +1,8 @@
 package com.rock.lib_compose.theme
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
@@ -9,8 +11,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
 import androidx.core.view.ViewCompat
 
 private val LightColors = lightColorScheme(
@@ -77,8 +84,8 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun WanAndroidTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
+    windowCompatConfig: WindowCompatConfig = WindowCompatConfig.None,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -97,7 +104,13 @@ fun WanAndroidTheme(
         }
     }
 
-    CompositionLocalProvider( LocalSpacing provides Spacing()) {
+    val autoWindowInfo = getAutoWindowInfo(activity = LocalContext.current as Activity, config = windowCompatConfig)
+    val fontScale = LocalDensity.current.fontScale
+    CompositionLocalProvider(
+        LocalSpacing provides Spacing(),
+        LocalAutoWindowInfo provides autoWindowInfo,
+        LocalDensity provides Density(density = autoWindowInfo.density, fontScale = fontScale)
+    ) {
         MaterialTheme(
             colorScheme = colorScheme,
             typography = Typography,

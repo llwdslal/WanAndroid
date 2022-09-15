@@ -46,6 +46,9 @@ dependencies {
     implementation Libs.AndroidX.Core.ktx
     implementation Libs.AndroidX.Compose.ui
     implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.windowSize
+    implementation Libs.AndroidX.Window.window
+
     implementation Libs.AndroidX.Navigation.navigationCompose
     implementation Libs.Accompanist.pager
     implementation Libs.Accompanist.pagerIndicators

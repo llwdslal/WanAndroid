@@ -1,5 +1,6 @@
 package com.rock.lib_base.arch
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
@@ -44,6 +45,7 @@ abstract class SubjectInteractor<P : Any, T> {
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val flow: Flow<T> = paramState
         .distinctUntilChanged()
         .flatMapLatest {

@@ -131,6 +131,9 @@ fun ImageBannerItem(imageUrl:String,modifier: Modifier = Modifier){
                     //todo 异常处理
                     Log.e("AsyncImage", "ImageBannerItem:State.Error ${it.result.throwable} ")
                 }
+                else->{
+
+                }
             }
         }
     )

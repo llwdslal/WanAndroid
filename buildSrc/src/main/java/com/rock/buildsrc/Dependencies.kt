@@ -1,7 +1,7 @@
 package com.rock.buildsrc
 
 object Version {
-    const val compose = "1.2.0-alpha08"
+    const val compose = "1.2.0"
 }
 
 object Libs {
@@ -23,7 +23,8 @@ object Libs {
         object Compose {
             private const val version = Version.compose
             const val ui = "androidx.compose.ui:ui:$version"
-            const val material = "androidx.compose.material3:material3:1.0.0-alpha12"
+            const val material = "androidx.compose.material3:material3:1.0.0-beta01"
+            const val windowSize = "androidx.compose.material3:material3-window-size-class:1.0.0-beta01"
             const val uiPreview = "androidx.compose.ui:ui-tooling-preview:$version"
             const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
             const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -41,7 +42,7 @@ object Libs {
         }
 
         object Room {
-            private const val version = "2.4.2"
+            private const val version = "2.4.3"
             const val runtime = "androidx.room:room-runtime:$version"
             const val ktx = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
@@ -54,6 +55,11 @@ object Libs {
         object Datastore{
             private const val version = "1.0.0"
             const val dataStoreP = "androidx.datastore:datastore-preferences:$version"
+        }
+
+        object Window{
+            private const val version = "1.0.0"
+            const val window = "androidx.window:window:$version"
         }
 
         object Test {

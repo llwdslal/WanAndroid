@@ -1,4 +1,4 @@
-package com.rock.wanandroid.ui.theme
+package com.rock.lib_compose.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

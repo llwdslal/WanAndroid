@@ -1,9 +1,9 @@
 package com.rock.buildsrc
 
 object ProjectConfig {
-    const val compileSdkVersion = 32
+    const val compileSdkVersion = 33
     const val minSdkVersion = 26
-    const val targetSdkVersion = 32
+    const val targetSdkVersion = 33
     const val applicationId = "com.rock.wanandroid"
     const val kotlinCompilerExtensionVersion = Version.compose
     const val versionCode = 1

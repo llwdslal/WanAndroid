@@ -45,6 +45,12 @@ dependencies {
     implementation Libs.Hilt.hiltAndroid
     kapt Libs.Hilt.hiltAndroidCompiler
 
+    //Paging
+    implementation Libs.AndroidX.Paging.paging
+
+    //room
+    implementation Libs.AndroidX.Room.ktx
+
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit
     androidTestImplementation Libs.AndroidX.Test.espresso

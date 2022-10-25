@@ -53,6 +53,7 @@ dependencies {
     implementation Libs.Accompanist.pager
     implementation Libs.Accompanist.pagerIndicators
     implementation Libs.Accompanist.placeholder
+    implementation Libs.Accompanist.swipeRefresh
     implementation Libs.Coil.coilCompose
 
 

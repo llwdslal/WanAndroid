@@ -57,6 +57,7 @@ dependencies {
     //room
     implementation Libs.AndroidX.Room.runtime
     implementation Libs.AndroidX.Room.ktx
+    implementation Libs.AndroidX.Room.paging
     annotationProcessor Libs.AndroidX.Room.compiler
     kapt Libs.AndroidX.Room.compiler
 
@@ -66,6 +67,9 @@ dependencies {
 
     //DataStore
     implementation Libs.AndroidX.Datastore.dataStoreP
+
+    //Paging
+    implementation Libs.AndroidX.Paging.paging
 
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit

@@ -46,6 +46,7 @@ object Libs {
             const val runtime = "androidx.room:room-runtime:$version"
             const val ktx = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
+            const val paging = "androidx.room:room-paging:2.5.0-alpha01"
         }
 
         object Hilt{
@@ -60,6 +61,12 @@ object Libs {
         object Window{
             private const val version = "1.0.0"
             const val window = "androidx.window:window:$version"
+        }
+
+        object Paging{
+            private const val version = "3.1.1"
+            const val paging = "androidx.paging:paging-runtime:$version"
+            const val compose = "androidx.paging:paging-compose:1.0.0-alpha16"
         }
 
         object Test {
@@ -97,10 +104,11 @@ object Libs {
     }
 
     object Accompanist {
-        private const val version = "0.24.13-rc"
+        private const val version = "0.26.5-rc"
         const val pager = "com.google.accompanist:accompanist-pager:$version"
         const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:$version"
         const val placeholder = "com.google.accompanist:accompanist-placeholder-material:$version"
+        const val swipeRefresh = "com.google.accompanist:accompanist-swiperefresh:$version"
     }
     object Coil {
         const val coilCompose = "io.coil-kt:coil-compose:2.1.0"

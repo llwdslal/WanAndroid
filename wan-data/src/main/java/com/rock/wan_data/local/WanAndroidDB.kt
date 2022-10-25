@@ -5,15 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.rock.wan_data.entity.Article
+import com.rock.wan_data.entity.ArticleRemoteKey
 import com.rock.wan_data.entity.Banner
 import com.rock.wan_data.local.dao.ArticleDao
+import com.rock.wan_data.local.dao.ArticleRemoteKeyDao
 import com.rock.wan_data.local.dao.BannerDao
 
 
 @Database(
     entities = [
         Article::class,
-        Banner::class
+        Banner::class,
+        ArticleRemoteKey::class
     ],
     version = 1
 )
@@ -21,6 +24,7 @@ abstract class WanAndroidDB : RoomDatabase(){
 
     abstract fun bannerDao(): BannerDao
     abstract fun articleDao(): ArticleDao
+    abstract fun articleRemoteKeyDao(): ArticleRemoteKeyDao
 
     companion object{
         private val instance:WanAndroidDB?= null

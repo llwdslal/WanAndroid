@@ -1,11 +1,8 @@
 package com.rock.lib_compose.widget
 
 import android.util.Log
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.DragInteraction
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,9 +17,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
-import com.google.accompanist.placeholder.PlaceholderHighlight
-import com.google.accompanist.placeholder.material.fade
-import com.google.accompanist.placeholder.material.placeholder
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -120,7 +114,7 @@ fun ImageBannerItem(imageUrl:String,modifier: Modifier = Modifier){
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .fillMaxWidth()
-            .placeholder(visible = placeHolderVisible, highlight = PlaceholderHighlight.fade())
+            .defaultPlaceHolder(placeHolderVisible)
             .then(modifier),
         onState = {
             when (it) {

@@ -43,6 +43,9 @@ dependencies {
     implementation Libs.AndroidX.Lifecycle.viewModel
     implementation Libs.Kotlin.Coroutine.Core
 
+    //Paging
+    implementation Libs.AndroidX.Paging.paging
+
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit
     androidTestImplementation Libs.AndroidX.Test.espresso

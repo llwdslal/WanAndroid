@@ -13,6 +13,7 @@ import com.rock.lib_compose.arch.commonState
 import com.rock.wan_data.entity.Article
 import com.rock.wan_data.entity.Banner
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun rememberHomeState(viewModel: HomeViewModel,navController: NavController):HomeState{
@@ -61,6 +62,13 @@ class HomeState(
     override fun onAction(action: HomeAction) {
         when(action){
             is HomeAction.RefreshList -> refreshList()
+            is HomeAction.ToListTop -> scrollToListTop()
+        }
+    }
+
+    private fun scrollToListTop() {
+        coroutineScope.launch {
+            lazyListState.animateScrollToItem(0)
         }
     }
 

@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 import com.rock.buildsrc.ProjectConfig
@@ -41,12 +43,18 @@ android {
 
 dependencies {
 
+    implementation project(path: ':wan-domain')
     implementation project(path: ':lib_compose')
 
     implementation Libs.AndroidX.Core.ktx
     implementation Libs.AndroidX.Compose.ui
     implementation Libs.AndroidX.Compose.material
     implementation Libs.AndroidX.Navigation.navigationCompose
+
+    //hilt
+    implementation Libs.Hilt.hiltAndroid
+    kapt Libs.Hilt.hiltAndroidCompiler
+    implementation Libs.AndroidX.Hilt.navigationCompose
 
     testImplementation Libs.Junit.junit
     androidTestImplementation Libs.AndroidX.Test.extJunit

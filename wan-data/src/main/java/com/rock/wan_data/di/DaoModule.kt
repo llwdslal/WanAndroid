@@ -22,4 +22,9 @@ object DaoModule {
     @Provides
     @Singleton
     fun articleRemoteKeyDao(db:WanAndroidDB) = db.articleRemoteKeyDao()
+
+    @Provides
+    @Singleton
+    fun userDao(db:WanAndroidDB) = db.userDao()
+
 }

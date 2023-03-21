@@ -5,7 +5,7 @@ object ProjectConfig {
     const val minSdkVersion = 26
     const val targetSdkVersion = 33
     const val applicationId = "com.rock.wanandroid"
-    const val kotlinCompilerExtensionVersion = Version.compose
+    const val kotlinCompilerExtensionVersion = "1.4.3"
     const val versionCode = 1
     const val versionName = "1.0"
     const val jvmTarget = "1.8"

@@ -4,6 +4,7 @@ package com.rock.wan_data.remote
 import com.rock.wan_data.entity.Article
 import com.rock.wan_data.entity.Banner
 import com.rock.wan_data.entity.PagedData
+import com.rock.wan_data.entity.User
 import retrofit2.http.*
 
 interface WanAndroidService {
@@ -18,7 +19,14 @@ interface WanAndroidService {
     @GET("banner/json")
     suspend fun getBanners(): NetResponse<List<Banner>>
 
-    @GET("https://www.wanandroid.com/article/list/{page}/json")
+    @GET("article/list/{page}/json")
     suspend fun getArticle(@Path("page") page:Int, @Query("page_size") pageSize:Int):NetResponse<PagedData<Article>>
+
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun login(@Field("username") username:String,@Field("password") password:String):NetResponse<User>
+
+    @GET("user/logout/json")
+    suspend fun logout(): NetResponse<Any>
 }
 

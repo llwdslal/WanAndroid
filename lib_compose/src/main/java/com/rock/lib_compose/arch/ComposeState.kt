@@ -19,7 +19,7 @@ abstract class ComposeState {
     fun navigate(
         route: String,
         interceptors: List<NavInterceptor> = listOf(NotFoundInterceptor),
-        builder: (NavOptionsBuilder.() -> Unit)
+        builder: (NavOptionsBuilder.() -> Unit) = {}
     ) {
         navController.navigate(
             route,

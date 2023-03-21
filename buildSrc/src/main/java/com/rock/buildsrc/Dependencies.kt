@@ -1,14 +1,12 @@
 package com.rock.buildsrc
 
-object Version {
-    const val compose = "1.2.0"
-}
+
 
 object Libs {
     object AndroidX {
 
         object Activity {
-            const val compose = "androidx.activity:activity-compose:1.3.1"
+            const val compose = "androidx.activity:activity-compose:1.7.0-rc01"
         }
 
         object Appcompat{
@@ -16,15 +14,15 @@ object Libs {
         }
 
         object Core {
-            private const val version = "1.7.0"
+            private const val version = "1.9.0"
             const val ktx = "androidx.core:core-ktx:$version"
         }
 
         object Compose {
-            private const val version = Version.compose
+            private const val version = "1.3.3"
             const val ui = "androidx.compose.ui:ui:$version"
-            const val material = "androidx.compose.material3:material3:1.0.0-beta01"
-            const val windowSize = "androidx.compose.material3:material3-window-size-class:1.0.0-beta01"
+            const val material = "androidx.compose.material3:material3:1.1.0-alpha08"
+            const val windowSize = "androidx.compose.material3:material3-window-size-class:1.1.0-alpha08"
             const val uiPreview = "androidx.compose.ui:ui-tooling-preview:$version"
             const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
             const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -38,15 +36,15 @@ object Libs {
         }
 
         object Navigation{
-            const val navigationCompose = "androidx.navigation:navigation-compose:2.4.2"
+            const val navigationCompose = "androidx.navigation:navigation-compose:2.6.0-alpha07"
         }
 
         object Room {
-            private const val version = "2.4.3"
+            private const val version = "2.5.0"
             const val runtime = "androidx.room:room-runtime:$version"
             const val ktx = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
-            const val paging = "androidx.room:room-paging:2.5.0-alpha01"
+            const val paging = "androidx.room:room-paging:$version"
         }
 
         object Hilt{
@@ -66,7 +64,7 @@ object Libs {
         object Paging{
             private const val version = "3.1.1"
             const val paging = "androidx.paging:paging-runtime:$version"
-            const val compose = "androidx.paging:paging-compose:1.0.0-alpha16"
+            const val compose = "androidx.paging:paging-compose:1.0.0-alpha18"
         }
 
         object Test {
@@ -84,7 +82,7 @@ object Libs {
     }
 
     object Hilt {
-        private const val version = "2.41"
+        private const val version = "2.44"
 
         const val hiltAndroid = "com.google.dagger:hilt-android:$version"
         const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:$version"

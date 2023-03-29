@@ -1,7 +1,6 @@
 package com.rock.wanandroid.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -19,7 +18,13 @@ import com.rock.ui_system.route.SystemScreens
 fun WanNavHost(modifier: Modifier = Modifier,navController: NavHostController){
 
     NavHost(modifier= modifier,navController = navController, startDestination = HomeScreens.Index.root){
-        HomeGraph(navController).create(this)
+        HomeGraph(navController,object :HomeScreens.ScreenRoutes{
+            override fun startLoginForResult(requestCode: String): String {
+                return ProfileScreens.Login.createForResultRoute(requestCode)
+            }
+
+
+        }).create(this)
         FaqGraph(navController).create(this)
         ProjectGraph(navController).create(this)
         SquareGraph(navController).create(this)
@@ -33,7 +38,7 @@ fun WanNavHost(modifier: Modifier = Modifier,navController: NavHostController){
     }
 }
 
-private class HomeGraph(navController: NavHostController) : HomeScreens.NavGraph(navController)
+private class HomeGraph(navController: NavHostController, homeRouters: HomeScreens.ScreenRoutes) : HomeScreens.NavGraph(navController, homeRouters)
 
 private class ProfileGraph(navController: NavHostController) : ProfileScreens.NavGraph(navController)
 

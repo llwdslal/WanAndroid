@@ -13,6 +13,7 @@ import com.rock.lib_compose.arch.ComposeState
 import com.rock.lib_compose.arch.resources
 import com.rock.ui_fqa.route.FqaScreens
 import com.rock.ui_home.route.HomeScreens
+import com.rock.ui_profile.route.ProfileScreens
 import com.rock.ui_project.route.ProjectScreens
 import com.rock.ui_square.route.SquareScreens
 import com.rock.ui_system.route.SystemScreens
@@ -62,8 +63,7 @@ class WanAppState(
     }
 
     fun navigateToProfile(){
-        //测试 PageNotFound
-        this.navigate("abc"){}
+        this.navigate(ProfileScreens.Index.createRoute())
     }
 
 }

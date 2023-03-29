@@ -1,25 +1,24 @@
 package com.rock.lib_compose.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
+import androidx.navigation.*
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
+
+private const val TAG = "NavGraphKtx"
 
 fun NavGraphBuilder.composableScreen(
-    screen: Screen,
+    screen: Screen<out OutRoutes>,
     content: @Composable (NavBackStackEntry) -> Unit
 ) {
     composable(
         route = screen.route,
-        arguments = screen.arguments,
+        arguments = screen.argumentsWithRequestCode,
         deepLinks = screen.deepLinks,
         content = content
     )
 }
 
-abstract class ScreenNavGraph(protected val navController: NavController,private val startScreen:Screen){
+abstract class ScreenNavGraph(protected val navController: NavController,private val startScreen:Screen<out OutRoutes>){
 
     protected abstract val composeScreens: NavGraphBuilder.() -> Unit
 

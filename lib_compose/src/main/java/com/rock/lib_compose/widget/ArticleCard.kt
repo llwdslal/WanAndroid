@@ -10,12 +10,15 @@ import androidx.compose.material.IconToggleButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -38,39 +41,45 @@ fun ArticleCard(
     Card(
         modifier = Modifier.then(modifier).clickable(onClick = onClick),
         shape = RoundedCornerShape(4.dp),
-        backgroundColor = Color.White
+        backgroundColor = MaterialTheme.colorScheme.surface,
+        contentColor = contentColorFor(backgroundColor = MaterialTheme.colorScheme.surface)
     ) {
-
         Row{
             Column(modifier = Modifier
                 .weight(1f)
                 .padding(8.dp)) {
                 Text(
-                    modifier = Modifier.defaultPlaceHolder(showPlaceHolder).defaultMinSize(minWidth = 150.dp),
+                    modifier = Modifier
+                        .defaultPlaceHolder(showPlaceHolder)
+                        .defaultMinSize(minWidth = 150.dp),
                     text = title ?: "",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Row {
                     Text(
-                        modifier = Modifier.defaultPlaceHolder(showPlaceHolder).defaultMinSize(minWidth = 20.dp),
+                        modifier = Modifier
+                            .defaultPlaceHolder(showPlaceHolder)
+                            .defaultMinSize(minWidth = 20.dp)
+                            .alpha(0.8f)
+                        ,
                         text = author ?: "",
                         fontSize = 12.sp,
-                        color = Color.Gray
                     )
                     if (author?.isEmpty() == false) {
                         Spacer(modifier = Modifier.width(6.dp))
                     }
 
                     Text(
-                        modifier = Modifier.defaultPlaceHolder(showPlaceHolder).defaultMinSize(minWidth = 30.dp),
+                        modifier = Modifier
+                            .defaultPlaceHolder(showPlaceHolder)
+                            .defaultMinSize(minWidth = 30.dp)
+                            .alpha(0.8f),
                         text = date ?: "",
                         fontSize = 12.sp,
-                        color = Color.Gray
                     )
                 }
             }
@@ -83,8 +92,6 @@ fun ArticleCard(
                 Icon(Icons.Filled.Favorite, tint = tint, contentDescription = "")
             }
         }
-
-
     }
 }
 

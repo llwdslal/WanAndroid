@@ -2,12 +2,13 @@ package com.rock.ui_project.route
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import com.rock.lib_compose.navigation.OutRoutes
 import com.rock.lib_compose.navigation.Screen
 import com.rock.lib_compose.navigation.ScreenNavGraph
 import com.rock.lib_compose.navigation.composableScreen
 import com.rock.ui_project.UiProject
 
-sealed class ProjectScreens(path:String):Screen(path) {
+sealed class ProjectScreens(path:String):Screen<OutRoutes>(path) {
     override val root: String
         get() = "project"
 

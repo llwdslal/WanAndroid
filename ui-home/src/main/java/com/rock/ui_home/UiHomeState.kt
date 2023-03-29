@@ -1,21 +1,26 @@
 package com.rock.ui_home
 
 import android.content.res.Resources
+import android.util.Log
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.rock.lib_base.arch.ActionConsumer
 import com.rock.lib_compose.arch.ComposeVmState
 import com.rock.lib_compose.arch.commonState
+import com.rock.ui_home.route.HomeScreens
+import com.rock.ui_home.route.RouteRequestCode
 import com.rock.wan_data.entity.Article
 import com.rock.wan_data.entity.Banner
+import com.rock.wan_data.entity.User
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun rememberHomeState(viewModel: HomeViewModel,navController: NavController):HomeState{
+    val user by viewModel.userFlow.collectAsState(initial = null)
     val banners by viewModel.bannerFlow.collectAsState(initial = emptyList())
     val topics by viewModel.topicFlow.collectAsState(initial = emptyList())
     val pagedArticle = viewModel.articlesPagingDataFlow.collectAsLazyPagingItems()
@@ -24,16 +29,17 @@ fun rememberHomeState(viewModel: HomeViewModel,navController: NavController):Hom
     val (isLoading,resources,coroutineScope) = commonState(vm = viewModel)
 
     return remember(
-        banners,topics,pagedArticle,lazyListState,isLoading,coroutineScope,viewModel,navController
+        user,banners,topics,pagedArticle,lazyListState,isLoading,coroutineScope,viewModel,navController
     ){
         HomeState(
+            user = user,
             banners = banners,
             topics = topics,
             pagedArticle = pagedArticle,
             lazyListState = lazyListState,
             toListTopVisibleState = toListTopVisibleState,
             isLoading = isLoading,
-            dataActionConsumer = viewModel,
+            viewModel = viewModel,
             navController = navController,
             resources = resources,
             coroutineScope = coroutineScope
@@ -43,24 +49,55 @@ fun rememberHomeState(viewModel: HomeViewModel,navController: NavController):Hom
 
 
 class HomeState(
+    val user: User?,
     val banners:List<Banner>,
     val topics: List<Article>,
     val pagedArticle: LazyPagingItems<Article>,
     val lazyListState: LazyListState,
     private val toListTopVisibleState: State<Boolean>,
     override val isLoading: Boolean,
-    override val dataActionConsumer: ActionConsumer<HomeAction>,
+    override val viewModel: HomeViewModel,
     override val navController: NavController,
     override val resources: Resources,
     override val coroutineScope: CoroutineScope,
-):ComposeVmState<HomeAction>(){
+):ComposeVmState<HomeAction,HomeViewModel>(){
 
     val shouldShowToTopButton
         get() = toListTopVisibleState.value
 
-    override fun onAction(action: HomeAction) {
+    override fun dispatchAction(action: HomeAction) {
         when(action){
             is HomeAction.RefreshList -> refreshList()
+            is HomeAction.ToListTop -> scrollToListTop()
+            is HomeAction.CollectTopic -> collectTopic(action.id)
+        }
+    }
+
+
+
+    private fun collectTopic(topicId: Int) {
+        if (user == null){
+            navForResult(
+                routeBuilder = HomeScreens.Index.outRoutes::startLoginForResult,
+                requestCode = RouteRequestCode.Login,
+            ) { resultData,key ->
+                if (resultData.getBoolean(key,false)){
+                    realCollectTopic(topicId)
+                }
+            }
+        }else{
+            realCollectTopic(topicId)// collect topic
+        }
+    }
+
+    private fun realCollectTopic(topicId: Int){
+        Log.e("realCollectTopic", "realCollectTopic: $topicId"  )
+    }
+
+
+    private fun scrollToListTop() {
+        coroutineScope.launch {
+            lazyListState.animateScrollToItem(0)
         }
     }
 

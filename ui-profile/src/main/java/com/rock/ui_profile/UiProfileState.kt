@@ -6,7 +6,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
-import com.rock.lib_base.arch.ActionConsumer
 import com.rock.lib_compose.arch.ComposeVmState
 import com.rock.lib_compose.arch.commonState
 import com.rock.wan_data.entity.User
@@ -23,7 +22,7 @@ fun rememberUiProfileState(viewModel: ProfileViewModel,navController: NavControl
         UiProfileState(
             user = user,
             navController = navController,
-            dataActionConsumer = viewModel,
+            viewModel = viewModel,
             isLoading = isNetLoading,
             resources = resources,
             coroutineScope = coroutineScope
@@ -36,15 +35,14 @@ class UiProfileState(
     override val navController: NavController,
     override val resources: Resources,
     override val coroutineScope: CoroutineScope,
-    override val dataActionConsumer: ActionConsumer<ProfileAction>,
+    override val viewModel: ProfileViewModel,
     override val isLoading: Boolean
-) :ComposeVmState<ProfileAction>(){
+) :ComposeVmState<ProfileAction,ProfileViewModel>(){
 
-    override fun onAction(action: ProfileAction) {
+    override fun dispatchAction(action: ProfileAction) {
         when(action){
-            ProfileAction.Logout -> dataActionConsumer.onAction(action)
+            ProfileAction.Logout -> viewModel.logout()
         }
     }
-
 
 }

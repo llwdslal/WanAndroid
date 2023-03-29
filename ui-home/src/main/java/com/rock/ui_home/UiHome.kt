@@ -12,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,6 +28,7 @@ import com.rock.lib_compose.widget.RefreshLazyColumn
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UiHome(navController: NavController,viewModel: HomeViewModel = hiltViewModel()){
+    LocalLifecycleOwner.current
     val homeState = rememberHomeState(viewModel = viewModel, navController = navController)
 
     Scaffold (
@@ -58,8 +60,7 @@ fun UiHome(navController: NavController,viewModel: HomeViewModel = hiltViewModel
                         title = title,
                         author = topic.author,
                         date = topic.niceDate,
-                        showPlaceHolder = topic == null,
-                        onCollectedClick = {},
+                        onCollectedClick = {homeState.dispatchAction(HomeAction.CollectTopic(topic.id))},
                         onClick = {}
                     )
                 }

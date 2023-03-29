@@ -22,10 +22,8 @@ import androidx.compose.ui.unit.sp
 
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.rock.lib_compose.arch.NavigationAction
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Login(navController: NavController, viewModel: LoginViewModel = hiltViewModel()) {
     val state = rememberLoginState(viewModel = viewModel, navController = navController)
@@ -38,7 +36,6 @@ fun Login(navController: NavController, viewModel: LoginViewModel = hiltViewMode
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun _login(state: UiLoginState,paddingValues: PaddingValues) {
 
@@ -105,9 +102,7 @@ private fun _login(state: UiLoginState,paddingValues: PaddingValues) {
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                state.dispatchAction(LoginAction.Login(username, password) {
-                    state.dispatchNavAction(NavigationAction.Back)
-                })
+                state.dispatchAction(LoginAction.Login(username, password))
             }
         ) {
             Text(text = "登录", fontSize = 18.sp, modifier = Modifier.padding(vertical = 6.dp))

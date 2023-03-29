@@ -2,12 +2,13 @@ package com.rock.ui_system.route
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import com.rock.lib_compose.navigation.OutRoutes
 import com.rock.lib_compose.navigation.Screen
 import com.rock.lib_compose.navigation.ScreenNavGraph
 import com.rock.lib_compose.navigation.composableScreen
 import com.rock.ui_system.UiSystem
 
-sealed class SystemScreens(path:String):Screen(path) {
+sealed class SystemScreens(path:String):Screen<OutRoutes>(path) {
     override val root: String
         get() = "square"
 

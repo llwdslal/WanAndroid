@@ -1,6 +1,7 @@
 package com.rock.ui_profile.login
 
 import android.content.res.Resources
+import android.os.Bundle
 import androidx.compose.material3.SnackbarHostState
 
 import androidx.compose.runtime.*
@@ -11,9 +12,9 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.navigation.NavController
-import com.rock.lib_base.arch.ActionConsumer
 import com.rock.lib_compose.arch.ComposeVmState
 import com.rock.lib_compose.arch.commonState
+import com.rock.lib_compose.navigation.*
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -63,7 +64,7 @@ fun rememberLoginState(viewModel: LoginViewModel, navController: NavController):
             pwdFocusRequester =pwdFocusRequester,
             keyboardController = keyboardController,
             navController = navController,
-            dataActionConsumer = viewModel,
+            viewModel = viewModel,
             isLoading = isNetLoading,
             resources = resources,
             coroutineScope = coroutineScope
@@ -83,13 +84,13 @@ class UiLoginState(
     val pwdFocusRequester:FocusRequester,
     private val keyboardController:SoftwareKeyboardController?,
     override val navController: NavController,
-    override val dataActionConsumer: ActionConsumer<LoginAction>,
+    override val viewModel: LoginViewModel,
     override val isLoading: Boolean,
     override val resources: Resources,
     override val coroutineScope: CoroutineScope
-) : ComposeVmState<LoginAction>() {
+) : ComposeVmState<LoginAction,LoginViewModel>() {
 
-    override fun onAction(action: LoginAction) {
+    override fun dispatchAction(action: LoginAction) {
         when (action) {
             LoginAction.ClearUsername -> clearUsernameInput()
             is LoginAction.UsernameInputChange -> onUsernameInputChanged(action.changedValue)
@@ -101,11 +102,7 @@ class UiLoginState(
     }
 
 
-    private fun navBack() {
-        keyboardController?.hide()
-    }
-
-    private fun onLogin(action: LoginAction.Login): Boolean {
+    private fun onLogin(action: LoginAction.Login) {
         val tipsMsg = when {
             action.username.isEmpty() -> "用户名不能为空"
             action.password.isEmpty() -> "密码不能为空"
@@ -117,12 +114,14 @@ class UiLoginState(
                 snackbarHostState.showSnackbar(tipsMsg)
             }
         } else {
-            val newAction = action.copy(callback = {
-                navBack()
-            })
-            dataActionConsumer.onAction(newAction)
+            viewModel.doLogin(action.username,action.password){
+                keyboardController?.hide()
+                navController.setResult(Bundle().also {
+                    it.putBoolean(NavResultDataKey,true)
+                })
+                navController.navigateUp()
+            }
         }
-        return true
     }
 
 

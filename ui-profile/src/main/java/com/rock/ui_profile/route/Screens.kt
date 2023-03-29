@@ -2,13 +2,14 @@ package com.rock.ui_profile.route
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import com.rock.lib_compose.navigation.OutRoutes
 import com.rock.lib_compose.navigation.Screen
 import com.rock.lib_compose.navigation.ScreenNavGraph
 import com.rock.lib_compose.navigation.composableScreen
 import com.rock.ui_profile.UiProfile
 import com.rock.ui_profile.login.Login
 
-sealed class ProfileScreens(path:String):Screen(path) {
+sealed class ProfileScreens(path:String):Screen<OutRoutes>(path) {
     override val root: String
         get() = "profile"
 

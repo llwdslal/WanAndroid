@@ -1,6 +1,5 @@
 package com.rock.ui_home
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -11,9 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -60,7 +57,7 @@ fun UiHome(navController: NavController,viewModel: HomeViewModel = hiltViewModel
                         title = title,
                         author = topic.author,
                         date = topic.niceDate,
-                        onCollectedClick = {homeState.dispatchAction(HomeAction.CollectTopic(topic.id))},
+                        onCollectedClick = {homeState.dispatchAction(HomeAction.CollectArticle(topic.id))},
                         onClick = {}
                     )
                 }

@@ -69,29 +69,27 @@ class HomeState(
         when(action){
             is HomeAction.RefreshList -> refreshList()
             is HomeAction.ToListTop -> scrollToListTop()
-            is HomeAction.CollectTopic -> collectTopic(action.id)
+            is HomeAction.CollectArticle -> collectArticle(action.id)
         }
     }
 
-
-
-    private fun collectTopic(topicId: Int) {
+    private fun collectArticle(articleId: Int) {
         if (user == null){
             navForResult(
                 routeBuilder = HomeScreens.Index.outRoutes::startLoginForResult,
                 requestCode = RouteRequestCode.Login,
             ) { resultData,key ->
                 if (resultData.getBoolean(key,false)){
-                    realCollectTopic(topicId)
+                    realCollectArticle(articleId)
                 }
             }
         }else{
-            realCollectTopic(topicId)// collect topic
+            realCollectArticle(articleId)// collect topic
         }
     }
 
-    private fun realCollectTopic(topicId: Int){
-        Log.e("realCollectTopic", "realCollectTopic: $topicId"  )
+    private fun realCollectArticle(articleId: Int){
+        Log.e("realCollectArticle", "realCollectArticle: $articleId"  )
     }
 
 

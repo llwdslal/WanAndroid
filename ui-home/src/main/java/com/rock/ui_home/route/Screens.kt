@@ -12,7 +12,6 @@ sealed class HomeScreens(path: String ) : Screen<HomeScreens.ScreenRoutes>(path)
 
     object Index : HomeScreens("index")
 
-    //abstract 是为涉及跨模块路由时定义抽象方法或属性
     abstract class NavGraph(navController: NavController,screenRoutes: ScreenRoutes) : ScreenNavGraph(navController, Index) {
 
         override val composeScreens: NavGraphBuilder.() -> Unit = {
@@ -28,7 +27,7 @@ sealed class HomeScreens(path: String ) : Screen<HomeScreens.ScreenRoutes>(path)
 }
 
 object RouteRequestCode{
-    val Login = "RequestLoginForResult"
+    const val Login = "RequestLoginForResult"
 }
 
 

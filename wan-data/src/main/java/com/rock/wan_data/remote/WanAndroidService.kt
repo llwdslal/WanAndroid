@@ -28,5 +28,9 @@ interface WanAndroidService {
 
     @GET("user/logout/json")
     suspend fun logout(): NetResponse<Any>
+
+    @GET("user_article/list/{page}/json")
+    suspend fun getWenda(@Path("page") page:Int, @Query("page_size") pageSize:Int):NetResponse<PagedData<Article>>
+
 }
 

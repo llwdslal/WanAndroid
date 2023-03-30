@@ -1,4 +1,4 @@
-package com.rock.ui_fqa
+package com.rock.ui_discovery
 
 import org.junit.Test
 

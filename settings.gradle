@@ -15,11 +15,10 @@ dependencyResolutionManagement {
 rootProject.name = "WanAndroid"
 include ':app'
 include ':ui-home'
-include ':ui-fqa'
+include ':ui-discovery'
 include ':ui-profile'
 include ':ui-project'
 include ':ui-square'
-include ':ui-system'
 include ':lib_base'
 include ':lib_compose'
 include ':wan-data'

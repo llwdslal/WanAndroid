@@ -11,12 +11,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.rock.lib_compose.arch.ComposeState
 import com.rock.lib_compose.arch.resources
-import com.rock.ui_fqa.route.FqaScreens
+import com.rock.ui_discovery.route.DiscoveryScreens
 import com.rock.ui_home.route.HomeScreens
 import com.rock.ui_profile.route.ProfileScreens
 import com.rock.ui_project.route.ProjectScreens
 import com.rock.ui_square.route.SquareScreens
-import com.rock.ui_system.route.SystemScreens
 import kotlinx.coroutines.CoroutineScope
 
 
@@ -78,24 +77,19 @@ enum class BottomBarItem(
         { Icon(imageVector = Icons.Filled.Home, contentDescription = "") },
         HomeScreens.Index.route
     ),
-    Fqa(
-        "问答",
-        { Icon(imageVector = Icons.Filled.Info, contentDescription = "") },
-        FqaScreens.Index.route
+    Discovery(
+        "发现",
+        { Icon(imageVector = Icons.Filled.Search, contentDescription = "") },
+        DiscoveryScreens.Index.route
     ),
     Project(
         "项目",
-        { Icon(imageVector = Icons.Filled.Search, contentDescription = "") },
+        { Icon(imageVector = Icons.Filled.Menu, contentDescription = "") },
         ProjectScreens.Index.route
     ),
-    Square(
-        "广场",
+    Compose(
+        "Compose",
         { Icon(imageVector = Icons.Filled.Build, contentDescription = "") },
         SquareScreens.Index.route
-    ),
-    System(
-        "体系",
-        { Icon(imageVector = Icons.Filled.Menu, contentDescription = "") },
-        SystemScreens.Index.route
     ),
 }

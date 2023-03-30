@@ -22,7 +22,6 @@ import com.rock.lib_compose.widget.Banner
 import com.rock.lib_compose.widget.ImageBannerItem
 import com.rock.lib_compose.widget.RefreshLazyColumn
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UiHome(navController: NavController,viewModel: HomeViewModel = hiltViewModel()){
     LocalLifecycleOwner.current

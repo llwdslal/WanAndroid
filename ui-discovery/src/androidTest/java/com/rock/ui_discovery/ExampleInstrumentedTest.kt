@@ -1,4 +1,4 @@
-package com.rock.ui_fqa
+package com.rock.ui_discovery
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

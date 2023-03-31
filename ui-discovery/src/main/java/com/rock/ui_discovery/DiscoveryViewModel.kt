@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import com.rock.lib_base.arch.PAGING_CONFIG
 import com.rock.lib_compose.arch.ComposeViewModel
 import com.rock.wan_data.entity.Article
+import com.rock.wan_domain.interactor.GuangchangPagingInteractor
 import com.rock.wan_domain.interactor.WendaPagingInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -16,12 +17,15 @@ import javax.inject.Inject
 @HiltViewModel
 class DiscoveryViewModel @Inject constructor(
     private val wendaPagingInteractor: WendaPagingInteractor,
+    private val guangchangPagingInteractor: GuangchangPagingInteractor
 ):ComposeViewModel(){
     init {
         wendaPagingInteractor(WendaPagingInteractor.Params(PAGING_CONFIG))
+        guangchangPagingInteractor(GuangchangPagingInteractor.Params(PAGING_CONFIG))
     }
 
     val selectedTabIndexState =  mutableStateOf(0)
 
     val wendaPagingDataFlow : Flow<PagingData<Article>> = wendaPagingInteractor.flow.cachedIn(viewModelScope)
+    val guangchangPagingDataFlow : Flow<PagingData<Article>> = guangchangPagingInteractor.flow.cachedIn(viewModelScope)
 }

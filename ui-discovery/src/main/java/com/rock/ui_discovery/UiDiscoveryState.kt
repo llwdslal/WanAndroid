@@ -23,14 +23,18 @@ fun rememberUiDiscoveryState(
 
     val selectedTabIndex = viewModel.selectedTabIndexState.value
     val pagedWenda = viewModel.wendaPagingDataFlow.collectAsLazyPagingItems()
+    val pagedGuangchang = viewModel.guangchangPagingDataFlow.collectAsLazyPagingItems()
     val wendaListState = rememberLazyListState()
+    val guangchangListState = rememberLazyListState()
 
     val (isLoading, resources, coroutineScope) = commonState(vm = viewModel)
     return remember(selectedTabIndex,pagedWenda,wendaListState) {
         UiDiscoveryState(
             selectedTabIndex = selectedTabIndex,
             pagedWenda = pagedWenda,
+            pagedGuangchang = pagedGuangchang,
             wendaListState = wendaListState,
+            guangchangListState = guangchangListState,
             navController = navController,
             viewModel = viewModel,
             resources = resources,
@@ -44,7 +48,9 @@ private const val TAG = "UiDiscoveryState"
 class UiDiscoveryState(
     val selectedTabIndex:Int,
     private val pagedWenda: LazyPagingItems<Article>,
+    private val pagedGuangchang: LazyPagingItems<Article>,
     private val wendaListState: LazyListState,
+    private val guangchangListState: LazyListState,
     override val navController: NavController,
     override val viewModel: DiscoveryViewModel,
     override val resources: Resources,
@@ -52,8 +58,10 @@ class UiDiscoveryState(
     override val isLoading: Boolean
 ) : ComposeVmState<DiscoveryAction, DiscoveryViewModel>() {
 
-    val currentPagingItems = if (selectedTabIndex == 0) pagedWenda else pagedWenda
-    val currentListState = if (selectedTabIndex == 0) wendaListState else wendaListState
+    val currentPagingItems
+        get() = if (selectedTabIndex == 0)pagedGuangchang  else  pagedWenda
+    val currentListState
+        get() = if (selectedTabIndex == 0) guangchangListState else wendaListState
 
     override fun dispatchAction(action: DiscoveryAction) {
         when(action){

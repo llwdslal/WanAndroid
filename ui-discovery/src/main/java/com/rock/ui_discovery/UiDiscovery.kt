@@ -22,19 +22,18 @@ private const val TAG = "UiDiscovery"
 private val tabTitles = arrayOf("广场", "问答")
 
 @Composable
-fun UiDiscovery(navController: NavController, viewModel: DiscoveryViewModel = hiltViewModel()) {
-    Log.e(TAG, "UiDiscovery: viewModel = $viewModel ")
+fun UiDiscovery(navController: NavController, viewModel: DiscoveryViewModel) {
     val discoveryState =
         rememberUiDiscoveryState(navController = navController, viewModel = viewModel)
 
     Column(
         modifier = Modifier.padding(top = 1.dp).fillMaxSize()
     ) {
-        TabRow(selectedTabIndex = discoveryState.selectedTabIndex) {
+        TabRow(selectedTabIndex = discoveryState.selectedTabIndex.value) {
             tabTitles.forEachIndexed { index, tabTitle ->
                 Tab(
                     text = { Text(text = tabTitle) },
-                    selected = discoveryState.selectedTabIndex == index,
+                    selected = discoveryState.selectedTabIndex.value == index,
                     onClick = { discoveryState.dispatchAction(DiscoveryAction.SelectTab(index)) }
                 )
             }

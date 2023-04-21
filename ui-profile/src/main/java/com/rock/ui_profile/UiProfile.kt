@@ -26,14 +26,12 @@ import com.rock.ui_profile.route.ProfileScreens
 @Composable
 fun UiProfile(navController: NavController,viewModel: ProfileViewModel = hiltViewModel()) {
     val profileState = rememberUiProfileState(viewModel = viewModel, navController = navController)
-    Surface(modifier = Modifier.fillMaxSize()) {
-        if (profileState.user == null){
-            UnLoginView {
-                profileState.dispatchNavAction(NavigationAction.Nav(ProfileScreens.Login.createRoute()))
-            }
-        }else{
-            ProfileView(profileState)
+    if (profileState.user == null){
+        UnLoginView {
+            profileState.dispatchNavAction(NavigationAction.Nav(ProfileScreens.Login.createRoute()))
         }
+    }else{
+        ProfileView(profileState)
     }
 }
 

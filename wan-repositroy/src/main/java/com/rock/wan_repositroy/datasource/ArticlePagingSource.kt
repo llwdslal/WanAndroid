@@ -16,7 +16,7 @@ class ArticlePagingSource  @Inject constructor(
     private val wanAndroidService: WanAndroidService
 ) {
     fun wendaDataSource():PagingSource<Int,Article> = DataSource(wanAndroidService::getWenda)
-    fun guangchangDataSource():PagingSource<Int,Article> = DataSource(wanAndroidService::getGuangchang)
+    fun squareDataSource():PagingSource<Int,Article> = DataSource(wanAndroidService::getGuangchang)
 }
 
 internal class DataSource  constructor(

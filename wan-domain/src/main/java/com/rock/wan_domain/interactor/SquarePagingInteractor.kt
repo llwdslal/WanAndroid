@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @ViewModelScoped
-class GuangchangPagingInteractor @Inject constructor(
+class SquarePagingInteractor @Inject constructor(
     private val dataSource: ArticlePagingSource
-) : PagingInteractor<GuangchangPagingInteractor.Params, Article>() {
+) : PagingInteractor<SquarePagingInteractor.Params, Article>() {
 
 
     override fun createObservable(params: Params): Flow<PagingData<Article>> {
-        return Pager(params.pagingConfig) { dataSource.guangchangDataSource() }.flow
+        return Pager(params.pagingConfig) { dataSource.squareDataSource() }.flow
     }
 
     data class Params(override val pagingConfig: PagingConfig) : Parameters<Article>

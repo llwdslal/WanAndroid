@@ -52,9 +52,8 @@ android {
 
 dependencies {
 
-    implementation project(path: ':ui-fqa')
+    implementation project(path: ':ui-discovery')
     implementation project(path: ':ui-square')
-    implementation project(path: ':ui-system')
     implementation project(path: ':ui-project')
     implementation project(path: ':ui-profile')
     implementation project(path: ':ui-home')

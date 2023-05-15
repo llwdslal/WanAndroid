@@ -21,6 +21,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.rock.lib_compose.arch.NavigationAction
 import com.rock.lib_compose.theme.WanAndroidTheme
+import com.rock.lib_compose.widget.PageScaffold
 import com.rock.ui_profile.route.ProfileScreens
 
 @Composable
@@ -38,67 +39,78 @@ fun UiProfile(navController: NavController,viewModel: ProfileViewModel = hiltVie
 
 @Composable
 private fun UnLoginView(navToLogin: () -> Unit) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+   PageScaffold {
+       Column(
+           modifier = Modifier.fillMaxSize(),
+           horizontalAlignment = Alignment.CenterHorizontally,
+           verticalArrangement = Arrangement.Center
 
-    ) {
-        Image(
-            modifier = Modifier
-                .border(2.dp, Color.Gray, CircleShape)
-                .padding(16.dp),
-            painter = painterResource(id = R.drawable.ic_profile_unlogin),
-            contentDescription = ""
-        )
-        OutlinedButton(onClick = navToLogin) {
-            Text(text = "登录",fontSize = 18.sp,)
-        }
-    }
+       ) {
+           Image(
+               modifier = Modifier
+                   .border(2.dp, Color.Gray, CircleShape)
+                   .padding(16.dp),
+               painter = painterResource(id = R.drawable.ic_profile_unlogin),
+               contentDescription = ""
+           )
+           OutlinedButton(onClick = navToLogin) {
+               Text(text = "登录",fontSize = 18.sp,)
+           }
+       }
+   }
+
 }
 
 @Composable
 private fun ProfileView(state:UiProfileState){
-    Column(modifier = Modifier.fillMaxSize(),) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-                .background(WanAndroidTheme.colorScheme.primary),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            val tintColor = WanAndroidTheme.colorScheme.secondary
+    PageScaffold(
+        useDarkModeIcons = {false}
+    ){
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .navigationBarsPadding()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .background(WanAndroidTheme.colorScheme.primaryContainer),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                val tintColor = WanAndroidTheme.colorScheme.primary
 
-            Icon(
-                painter = painterResource(id = R.drawable.ic_profile),
-                tint = tintColor,
-                contentDescription = ""
-            )
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_profile),
+                    tint = tintColor,
+                    contentDescription = ""
+                )
 
-            Spacer(modifier = Modifier.padding(vertical = 8.dp))
-            Text(
-                text = state.user!!.nickname,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = tintColor
-            )
-        }
+                Spacer(modifier = Modifier.padding(vertical = 8.dp))
+                Text(
+                    text = state.user!!.nickname,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = tintColor
+                )
+            }
 
-        ProfileMenuItem(title = "我的收藏") {
+            ProfileMenuItem(title = "我的收藏") {
 
-        }
-        Divider()
-        ProfileMenuItem(title = "我的分享") {}
-        Divider()
-        ProfileMenuItem(title = "我的积分") {}
+            }
+            Divider()
+            ProfileMenuItem(title = "我的分享") {}
+            Divider()
+            ProfileMenuItem(title = "我的积分") {}
 
-        Spacer(modifier = Modifier.weight(1f))
-        Button(
-            modifier = Modifier.padding(bottom = 18.dp,start = 30.dp, end = 30.dp).fillMaxWidth(),
-            onClick = { state.dispatchAction(ProfileAction.Logout) }) {
-            Text(modifier= Modifier.padding(vertical = 8.dp),text = "退出登录",fontSize = 18.sp)
+            Spacer(modifier = Modifier.weight(1f))
+            Button(
+                modifier = Modifier
+                    .padding(bottom = 18.dp, start = 30.dp, end = 30.dp)
+                    .fillMaxWidth(),
+                onClick = { state.dispatchAction(ProfileAction.Logout) }) {
+                Text(modifier= Modifier.padding(vertical = 8.dp),text = "退出登录",fontSize = 18.sp)
+            }
         }
     }
 }

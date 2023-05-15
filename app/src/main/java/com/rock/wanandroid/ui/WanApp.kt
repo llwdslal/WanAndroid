@@ -1,6 +1,5 @@
 package com.rock.wanandroid.ui
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -12,6 +11,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.rock.lib_compose.theme.WanAndroidTheme
 import com.rock.lib_compose.theme.WindowCompatConfig
+import com.rock.lib_compose.widget.FullScreenScaffold
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,23 +29,20 @@ fun WanApp(){
 
     }) {
         // A surface container using the 'background' color from the theme
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-
-            Scaffold(
-                topBar = {
-                    if (wanAppState.shouldShowNavBar) {
-                        TopBar(title = wanAppState.title, wanAppState::navigateToProfile)
-                    }
-                },
-                bottomBar = {
-                    if (wanAppState.shouldShowNavBar) {
-                        BottomBar(wanAppState.bottomBarItems, wanAppState.selectedBottomItemIndex,wanAppState::navigateToBottomItem)
-                    }
-                },
-                containerColor = Color.LightGray
-            ) {
-                WanNavHost(modifier = Modifier.padding(it),navController = wanAppState.navController)
-            }
+        FullScreenScaffold(
+            topBar = {
+                if (wanAppState.shouldShowNavBar) {
+                    TopBar(title = wanAppState.title, wanAppState::navigateToProfile)
+                }
+            },
+            bottomBar = {
+                if (wanAppState.shouldShowNavBar) {
+                    BottomBar(wanAppState.bottomBarItems, wanAppState.selectedBottomItemIndex,wanAppState::navigateToBottomItem)
+                }
+            },
+            containerColor = Color.LightGray
+        ) {
+            WanNavHost(modifier = Modifier.padding(it),navController = wanAppState.navController)
         }
     }
 }

@@ -22,7 +22,7 @@ object Libs {
             private const val version = "1.3.3"
             const val ui = "androidx.compose.ui:ui:$version"
             const val material = "androidx.compose.material3:material3:1.1.0-alpha08"
-            const val windowSize = "androidx.compose.material3:material3-window-size-class:1.1.0-alpha08"
+            const val windowSize = "androidx.compose.material3:material3-window-size-class:1.1.0-rc01"
             const val uiPreview = "androidx.compose.ui:ui-tooling-preview:$version"
             const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
             const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
@@ -107,6 +107,7 @@ object Libs {
         const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:$version"
         const val placeholder = "com.google.accompanist:accompanist-placeholder-material:$version"
         const val swipeRefresh = "com.google.accompanist:accompanist-swiperefresh:$version"
+        const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.31.0-alpha"
     }
     object Coil {
         const val coilCompose = "io.coil-kt:coil-compose:2.1.0"

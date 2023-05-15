@@ -20,35 +20,38 @@ import com.rock.lib_base.ktx.fromHtml
 import com.rock.lib_compose.widget.ArticleCard
 import com.rock.lib_compose.widget.Banner
 import com.rock.lib_compose.widget.ImageBannerItem
+import com.rock.lib_compose.widget.PageScaffold
 import com.rock.lib_compose.widget.RefreshLazyColumn
 
 @Composable
-fun UiHome(navController: NavController,viewModel: HomeViewModel = hiltViewModel()){
+fun UiHome(navController: NavController, viewModel: HomeViewModel = hiltViewModel()) {
     LocalLifecycleOwner.current
     val homeState = rememberHomeState(viewModel = viewModel, navController = navController)
 
-    Scaffold (
+    PageScaffold(
         floatingActionButton = {
-            if (homeState.shouldShowToTopButton){
-                FloatingActionButton(onClick = {homeState.dispatchAction(HomeAction.ToListTop)}) {
-                    Icon(imageVector = Icons.Default.KeyboardArrowUp, contentDescription = "" )
+            if (homeState.shouldShowToTopButton) {
+                FloatingActionButton(onClick = { homeState.dispatchAction(HomeAction.ToListTop) }) {
+                    Icon(imageVector = Icons.Default.KeyboardArrowUp, contentDescription = "")
                 }
             }
         }
-            ){ paddingValues ->
-        Column (modifier = Modifier.padding(paddingValues)){
+    ) { paddingValues ->
+        Column() {
             Banner(items = homeState.banners) {
-                ImageBannerItem(modifier = Modifier.height(200.dp),imageUrl = it.imagePath)
+                ImageBannerItem(modifier = Modifier.height(200.dp), imageUrl = it.imagePath)
             }
             RefreshLazyColumn(
-                modifier = Modifier.fillMaxSize().padding(top = 4.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 4.dp),
                 state = homeState.lazyListState,
                 contentPadding = PaddingValues(horizontal = 4.dp),
                 verticalArrangement = Arrangement.spacedBy(2.dp),
-                onRefresh = { homeState.dispatchAction(HomeAction.RefreshList)},
+                onRefresh = { homeState.dispatchAction(HomeAction.RefreshList) },
                 isRefreshing = homeState.pagedArticle.loadState.refresh == LoadState.Loading,
                 shouldShowLoadingState = { homeState.pagedArticle.loadState.append == LoadState.Loading }
-            ){
+            ) {
                 //置顶文章
                 items(homeState.topics, key = { it.id }) { topic ->
                     val title = topic.title.fromHtml()
@@ -56,12 +59,18 @@ fun UiHome(navController: NavController,viewModel: HomeViewModel = hiltViewModel
                         title = title,
                         author = topic.author,
                         date = topic.niceDate,
-                        onCollectedClick = {homeState.dispatchAction(HomeAction.CollectArticle(topic.id))},
+                        onCollectedClick = {
+                            homeState.dispatchAction(
+                                HomeAction.CollectArticle(
+                                    topic.id
+                                )
+                            )
+                        },
                         onClick = {}
                     )
                 }
                 //分页文章
-                items(homeState.pagedArticle, key = {it.id}) { article ->
+                items(homeState.pagedArticle, key = { it.id }) { article ->
                     val title = article?.title?.fromHtml()
                     ArticleCard(
                         title = title,
